@@ -1,14 +1,15 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import Loading from "../../components/shared/Loading";
 import { getSingleUser } from "../../redux/actions/userAction";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { user, isLoading } = useSelector((state) => state.user);
   useEffect(() => {
-    dispatch(getSingleUser());
+    dispatch(getSingleUser(navigate));
   }, [dispatch]);
   if (isLoading) {
     return <Loading />;
