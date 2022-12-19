@@ -18,22 +18,22 @@ const CreatePost = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    const formData = new FormData();
-    formData.append("image", photo);
-    fetch(
-      "https://api.imgbb.com/1/upload?key=1b6521bd0bd67a12328f7f6c0e209344",
-      {
-        method: "POST",
-        body: formData,
-      }
-    )
-      .then((res) => res.json())
-      .then((result) => {
-        setAuthToken(authToken);
-        if (result.success) {
-          if (!postData.title || !postData.content) {
-            toast.error("title or post not be empty");
-          } else {
+    if (!postData.title || !postData.content) {
+      toast.error("Title or Post not be empty");
+    } else {
+      const formData = new FormData();
+      formData.append("image", photo);
+      fetch(
+        "https://api.imgbb.com/1/upload?key=1b6521bd0bd67a12328f7f6c0e209344",
+        {
+          method: "POST",
+          body: formData,
+        }
+      )
+        .then((res) => res.json())
+        .then((result) => {
+          setAuthToken(authToken);
+          if (result.success) {
             axios
               .post("http://localhost:4000/api/v1/post/create", {
                 ...postData,
@@ -44,11 +44,11 @@ const CreatePost = () => {
                 setPostData({ title: "", content: "" });
                 e.target.reset();
               });
+          } else {
+            toast.error("Please Select a Valid Image");
           }
-        } else {
-          toast.error("There have some error");
-        }
-      });
+        });
+    }
   };
   return (
     <div>
@@ -82,7 +82,8 @@ const CreatePost = () => {
           </div>
           <div className="form-control">
             <label className="label">
-              <span className="label-text">Choose Post Avator</span>
+              <span className="label-text">Choose Post Avator</span>{" "}
+              <span>JPG/JPEG/PNG</span>
             </label>
             <input
               type="file"
