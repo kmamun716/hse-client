@@ -18,9 +18,9 @@ const Dashboard = () => {
     <div>
       <div className="drawer drawer-mobile">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content flex flex-col items-center">
-          <h3 className="text-xl">Welcome <span className="text-lime-500">{user?.name}</span> to your dashboard</h3>
-          <p>You are one of <span className="text-orange-500">{user?.role}</span> of this site</p>
+        <div className="drawer-content flex flex-col">
+          <h3 className="text-xl text-center">Welcome <span className="text-lime-500">{user?.name}</span> to your dashboard</h3>
+          <p className="text-center">You are one of <span className="text-orange-500">{user?.role}</span> of this site</p>
           <Outlet />
           <label
             htmlFor="my-drawer-2"
@@ -42,7 +42,7 @@ const Dashboard = () => {
             </li>
             <li>
               {" "}
-              <Link to="/dashboard/my-posts">Posts</Link>{" "}
+              <Link to="/dashboard/my-posts">My Posts</Link>{" "}
             </li>
             <li>
               {" "}

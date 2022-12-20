@@ -53,7 +53,7 @@ const CreatePost = () => {
   return (
     <div>
       <h2 className="text-xl text-center underline">Create Post</h2>
-      <div>
+      <div className="flex flex-col justify-around">
         <form onSubmit={handleSubmit}>
           {/* title */}
           <div className="form-control w-full max-w-xs">
@@ -92,7 +92,9 @@ const CreatePost = () => {
               onChange={(e) => setPhoto(e.target.files[0])}
             />
           </div>
+          <div className="form-control">
           <input className="mt-2 btn btn-accent" type="submit" value="Post" />
+          </div>
         </form>
       </div>
     </div>
