@@ -7,10 +7,10 @@ import { getSingleUser } from "../../redux/actions/userAction";
 const Dashboard = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { user, isLoading } = useSelector((state) => state.user);
+  const { user, isLoading } = useSelector((state) => state?.user);
   useEffect(() => {
     dispatch(getSingleUser(navigate));
-  }, [dispatch]);
+  }, [dispatch, navigate]);
   if (isLoading) {
     return <Loading />;
   }

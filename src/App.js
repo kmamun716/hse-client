@@ -22,6 +22,7 @@ import Login from './pages/Login/Login';
 import Mission from './pages/Mission/Mission';
 import NotFound from './pages/NotFound/NotFound';
 import Register from './pages/Register/Register';
+import SinglePost from './pages/SinglePost/SinglePost';
 
 const queryClient = new QueryClient();
 
@@ -34,6 +35,7 @@ function App() {
         <Route path='/' element={<Home/>} />
         <Route path='/login' element={<Login/>} />
         <Route path='/register' element={<Register/>} />
+        <Route path='/post/:slug' element={<SinglePost/>} />
         <Route path='/dashboard' element={<RequireAuth><Dashboard/></RequireAuth>}>
           <Route index element={<Profile/>} />
           <Route path='create-post' element={<CreatePost/>} />

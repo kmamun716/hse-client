@@ -15,8 +15,9 @@ const userSlice = createSlice({
     },
     extraReducers: (builder)=>{
         builder.addCase(getSingleUser.pending, (state)=>{
-            state.isLoading = true
-            state.message=''
+            state.isLoading = true;
+            state.user='';
+            state.message='';
         });
         builder.addCase(getSingleUser.fulfilled, (state, action)=>{
             state.isLoading = false;
