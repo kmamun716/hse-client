@@ -9,18 +9,20 @@ const SinglePost = () => {
     const user = useSelector(state=>state.user);
     const {slug} = useParams();
     const postTitle = slug.split('-').join(' ');
-    const {data, isLoading} = useQuery(['post'], ()=>fetch(`http://localhost:4000/api/v1/post/${postTitle}`).then(res=>res.json()));
+    const {data, isLoading} = useQuery(['post'], async ()=>{
+        const res = await fetch(`http://localhost:4000/api/v1/post/${postTitle}`);
+        return await res.json();
+    });
     if(isLoading){
         return <Loading/>
     }
     if(data?.message){
         toast.error(data?.message)
     }
-    console.log(user)
     return (
-        <div className='flex flex-col items-center'>
+        <div>
             {
-                data?.message ? <h2 className=' text-red-500 text-2xl'>{data?.message}</h2>: <div>
+                data?.message ? <h2 className=' text-red-500 text-2xl'>{data?.message}</h2>: <div className='flex flex-col items-center gap-2'>
                     <h3 className='text-3xl text-green-500'>{data?.title}</h3>
                     <img width='200em' src={data?.photo} alt={data?.title} />
                     <p><span>Author: {data?.user.name}</span></p>

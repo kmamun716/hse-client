@@ -6,7 +6,6 @@ const Profile = () => {
   const dispatch = useDispatch();
   const { user, message } = useSelector((state) => state.user);
   const [isModalOpen, setModalOpen] = useState(false);
-  console.log(user);
   return (
     <div className="flex flex-col items-center">
       <div>
